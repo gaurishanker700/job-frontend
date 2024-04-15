@@ -1,9 +1,15 @@
 import React from 'react'
 
-function ResumeModal() {
+function ResumeModal({imageUrl,onClose}) {
   return (
     <>
-     <h1>resume modal</h1> 
+    <div className="resume-modal">
+      <div className="modal-content">
+        <span className="close" onClick={onClose}>&times;</span>
+        <img src={imageUrl} alt="Resume"/>
+      </div>
+
+    </div>
     </>
   )
 }
