@@ -16,6 +16,8 @@ import MyApplications from './components/Application/MyApplications'
 import NotFound from './components/NotFound/NotFound'
 import axios from 'axios'
 import {Toaster} from 'react-hot-toast'
+import Ahome from './components/Admin/Ahome';
+import MaybeNavbar from './components/MaybeNavbar/MaybeNavbar';
 
 
 
@@ -50,7 +52,9 @@ function App() {
   return (
     <>
     <Router>
-      <Navbar/>
+     <MaybeNavbar>
+     <Navbar/>
+     </MaybeNavbar>
       <Routes>
 
 
@@ -63,6 +67,7 @@ function App() {
         <Route path="/job/me"element={<MyJobs />}/>
         <Route path="/application/:id"element={<Application />}/>
         <Route path="/application/me"element={<MyApplications />}/>
+        <Route path="/admin"element={<Ahome/>}/>
         <Route path="*"element={<NotFound />}/>
 
 

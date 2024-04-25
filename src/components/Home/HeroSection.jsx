@@ -37,7 +37,7 @@ function HeroSection() {
           <p>Unlocking potential with precision and passion. Dynamic problem-solver adept in diverse environments. Seeking a role to innovate and collaborate within a forward-thinking team.</p>
         </div>
         <div className="image">
-          <img src="/heroS.jpg" alt="hero" />
+          <img src="/heroS.png" alt="hero" />
         </div>
       </div>
       <div className="details">
