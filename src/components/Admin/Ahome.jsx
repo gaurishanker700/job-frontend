@@ -84,13 +84,13 @@ function Ahome() {
             <Link>Home</Link>
           </li>
           <li>
-            <Link>All Jobs</Link>
+            <Link to="/admin/jobs">All Jobs</Link>
           </li>
           <li>
             <Link>All Job Seekers</Link>
           </li>
           <li>
-            <Link>All Employers</Link>
+            <Link to="/admin/employer">All Employers</Link>
           </li>
           <li>
             <Link>All Applications</Link>
@@ -108,7 +108,7 @@ function Ahome() {
                     Total: <sup>{job.length}</sup>
                   </h6>
                   <p className="card-text">Here you can manage jobs.</p>
-                  <Link>All Jobs</Link>
+                  <Link to="/admin/jobs">All Jobs</Link>
                 </div>
               </div>
             </div>
@@ -132,7 +132,7 @@ function Ahome() {
                     Total: <sup>{emp.length}</sup>
                   </h6>
                   <p className="card-text">Here you can manage Employer.</p>
-                  <Link>View Employer</Link>
+                  <Link to="/admin/employer">View Employer</Link>
                 </div>
               </div>
             </div>

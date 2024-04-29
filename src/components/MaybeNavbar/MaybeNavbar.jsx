@@ -8,7 +8,7 @@ const MaybeNavbar = ({ children }) => {
 
   useEffect(() => {
     // Use the 'pathname' property of 'location'
-    if (location.pathname === "/admin") {
+    if (location.pathname === "/admin"|| location.pathname === "/admin/jobs"|| location.pathname === "/admin/employer") {
       setShow(false);
     } else {
       setShow(true);
