@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function AllEmployer() {
   const [emp, setEmp] = useState([]);
   const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
+
+  const isadmin=JSON.parse(localStorage.getItem("admin"));
+  const navigate=useNavigate()
+  let adminName = isadmin?.username
+  console.log(adminName)
+  useEffect(()=>{
+    if(!adminName) navigate("/admin/login")
+  },[isadmin,adminName])
 
   // get all employer data
   useEffect(() => {

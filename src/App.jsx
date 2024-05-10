@@ -20,6 +20,9 @@ import Ahome from './components/Admin/Ahome';
 import MaybeNavbar from './components/MaybeNavbar/MaybeNavbar';
 import AllJobs from './components/Admin/jobs/AllJobs';
 import AllEmployer from './components/Admin/Employer/AllEmployer';
+import Alllapplication from './components/Admin/applications/Alllapplication';
+import Jobseeker from './components/Admin/job seeker/Jobseeker';
+import AdminLogin from './components/Auth/AdminLogin';
 
 
 
@@ -69,9 +72,12 @@ function App() {
         <Route path="/job/me"element={<MyJobs />}/>
         <Route path="/application/:id"element={<Application />}/>
         <Route path="/application/me"element={<MyApplications />}/>
+        <Route path="/admin/login"element={<AdminLogin/>}/>
         <Route path="/admin"element={<Ahome/>}/>
         <Route path="/admin/jobs"element={<AllJobs/>}/>
         <Route path="/admin/employer"element={<AllEmployer/>}/>
+        <Route path="/admin/application"element={<Alllapplication/>}/>
+        <Route path="/admin/jobseeker" element={<Jobseeker/>}/>
 
         <Route path="*"element={<NotFound />}/>
 
