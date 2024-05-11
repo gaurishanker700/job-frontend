@@ -17,13 +17,13 @@ function Jobs() {
         const res = await axios.get("http://localhost:4000/api/job/getall", {
           withCredentials: true,
         });
-        console.log("object,",res)
+        console.log("object,", res);
         setJobs(res.data.jobs);
       } catch (error) {
         console.log("Error", error);
       }
     };
-    fetch()
+    fetch();
   }, []);
   // console.log("Set jobs",jobs);
   // if(!isAuthenticated){
@@ -46,12 +46,9 @@ function Jobs() {
     }
   };
 
-
-
   useEffect(() => {
     handleSearch();
   }, [search]);
-
 
   const handleCategoryClick = (category) => {
     setSearch(category);
@@ -60,12 +57,41 @@ function Jobs() {
 
   return (
     <>
-    
-<div>
-  <h5 className="text-center">Popular Job Categories</h5>
-  <button className="btn btn-outline-primary mb-3 btn-lg ms-4" onClick={()=>{handleCategoryClick("mern")}}>Mern</button>
-  <button className="btn btn-outline-info mb-3 btn-lg ms-4" onClick={()=>{handleCategoryClick("Graphics & Design")}}>Graphics & Design</button>
-</div>
+      <h5 className="text-center">Popular Job Categories</h5>
+      <div className="  d-flex justify-content-center">
+        <button
+          className="btn btn-outline-primary mb-3 btn-lg ms-4"
+          onClick={() => {
+            handleCategoryClick("mern");
+          }}
+        >
+          Mern
+        </button>
+        <button
+          className="btn btn-outline-info mb-3 btn-lg ms-4"
+          onClick={() => {
+            handleCategoryClick("Graphics & Design");
+          }}
+        >
+          Graphics & Design
+        </button>
+        <button
+          className="btn btn-outline-success mb-3 btn-lg ms-4"
+          onClick={() => {
+            handleCategoryClick("Sales");
+          }}
+        >
+          Sales
+        </button>
+        <button
+          className="btn btn-outline-warning mb-3 btn-lg ms-4"
+          onClick={() => {
+            handleCategoryClick("Data Entry");
+          }}
+        >
+          Data Entry
+        </button>
+      </div>
       <section className="jobs page">
         <div className="container">
           <h1>All Available Jobs</h1>
@@ -82,41 +108,41 @@ function Jobs() {
             </form>
           </div>
           <div className="banner">
-            {
-              data.length>0?(<>
-              {data &&
-              data.map((el) => {
-                return (
-                  <div className="card" key={el._id}>
-                    <p>{el.title}</p>
-                    <p>{el.category}</p>
-                    <p>{el.country}</p>
-                    <Link to={`/job/${el._id}`}>View Details</Link>
-                  </div>
-                );
-              })}
-              
-              
-              
-              </>):(<>
-              {jobs &&
-              jobs.map((el) => {
-                return (
-                  <div className="card" key={el._id}>
-                    <p>{el.title}</p>
-                    <p>{el.category}</p>
-                    <p>{el.country}</p>
-                    <Link to={`/job/${el._id}`}>View Details</Link>
-                  </div>
-                );
-              })}
-              
-              
-              </>)
-            }
+            {data.length > 0 ? (
+              <>
+                {data &&
+                  data.map((el) => {
+                    return (
+                      <div className="card" key={el._id} style={{ maxWidth: "18rem" }}>
+  <div className="card-body" style={{ maxHeight: "400px", overflowY: "auto" }}>
+    <h5 className="card-title">{el.title}</h5>
+    <p className="card-text">Category: {el.category}</p>
+    <p className="card-text">Country: {el.country}</p>
+    <a href={`/job/${el._id}`} className="btn btn-primary">View Details</a>
+  </div>
+</div>
 
+                    );
+                  })}
+              </>
+            ) : (
+              <>
+                {jobs &&
+                  jobs.map((el) => {
+                    return (
+                      <div className="card" key={el._id} style={{ maxWidth: "18rem" }}>
+  <div className="card-body" style={{ maxHeight: "400px", overflowY: "auto" }}>
+    <h5 className="card-title">{el.title}</h5>
+    <p className="card-text">Category: {el.category}</p>
+    <p className="card-text">Country: {el.country}</p>
+    <a href={`/job/${el._id}`} className="btn btn-primary">View Details</a>
+  </div>
+</div>
 
-            
+                    );
+                  })}
+              </>
+            )}
           </div>
         </div>
       </section>

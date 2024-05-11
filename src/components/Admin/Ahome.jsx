@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import "./ahome.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import toast from 'react-hot-toast'
 
 function Ahome() {
   const [emp, setEmp] = useState([]);
   const [job, setJob] = useState([]);
   const [jobseeker, setJobseeker] = useState([]);
   const [application, setApplication] = useState([]);
+  const [category, setCategory] = useState([]);
+  const[cats,setCats]=useState([]);
   const isadmin=JSON.parse(localStorage.getItem("admin"));
   const navigate=useNavigate()
   let adminName = isadmin?.username
@@ -85,7 +88,39 @@ const handlelogout=()=>{
     allApplications();
   }, []);
   
-  console.log(application)
+  // console.log(application)
+  console.log(("categorrrr",category))
+  const handlecat=async(e) => {
+    e.preventDefault();
+   try {
+    const res= await axios.post("http://localhost:4000/api/admin/addcategory",{name:category},{withCredentials:true})
+    console.log(res.data)
+
+    setCategory("")
+    toast.success(res.data.message)
+    
+   } catch (error) {
+    console.log("category error",error)
+    
+   }
+    
+  }
+  const fetchallcategories =async()=>{
+    try {
+      let res=(await axios.get("http://localhost:4000/api/admin/allcategories",{withCredentials:true})).data;
+      // console.log(res)
+      setCats(res.cats)
+
+      
+    } catch (error) {
+      console.log("category errors",error)
+    }
+  }
+  useEffect(()=>{
+    fetchallcategories()
+  },[])
+  console.log(cats)
+
   
   return (
     <>
@@ -109,8 +144,19 @@ const handlelogout=()=>{
          <li>
            <Link to="/admin/application">All Applications</Link>
          </li>
+         
        </ul>
-       <div><button class="btn btn-outline-danger btn-lg" onClick={handlelogout}>logout</button></div>
+       <form onSubmit={handlecat}>
+  <div className="mb-3">
+    
+    <input type="text" className=" w-100 form-control" id="cat" value={category} placeholder="add job category" onChange={(e)=>setCategory(e.target.value)}  />
+  </div>
+  <button type="submit" className="btn btn-outline-info btn-lg w-100  ">Submit</button>
+</form>
+
+
+
+       <div><button class="btn btn-outline-danger btn-lg w-100 mt-5" onClick={handlelogout}>logout</button></div>
      </div>
      <div className="main-content">
        <div className="container">
@@ -160,6 +206,18 @@ const handlelogout=()=>{
                  </h6>
                  <p className="card-text">Here you can manage Applications.</p>
                  <Link to="/admin/application">View Application</Link>
+               </div>
+             </div>
+           </div>
+           <div className="col-md-4">
+             <div className="card">
+               <div className="card-body">
+                 <h5 className="card-title">All Categories</h5>
+                 <h6 className="card-subtitle mb-2 text-muted">
+                   Total: <sup>{cats.length}</sup>
+                 </h6>
+                 <p className="card-text">Here you can manage Categories.</p>
+                 <Link to="/admin/category">View Categories</Link>
                </div>
              </div>
            </div>

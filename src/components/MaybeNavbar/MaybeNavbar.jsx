@@ -14,7 +14,8 @@ const MaybeNavbar = ({ children }) => {
       location.pathname === "/admin/employer" ||
       location.pathname === "/admin/application" ||
       location.pathname === "/admin/jobseeker"||
-      location.pathname === "/admin/login"
+      location.pathname === "/admin/login"||
+      location.pathname==="/admin/category"
     ) {
       setShow(false);
     } else {

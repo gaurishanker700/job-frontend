@@ -23,6 +23,7 @@ import AllEmployer from './components/Admin/Employer/AllEmployer';
 import Alllapplication from './components/Admin/applications/Alllapplication';
 import Jobseeker from './components/Admin/job seeker/Jobseeker';
 import AdminLogin from './components/Auth/AdminLogin';
+import Category from './components/Admin/category/Category'
 
 
 
@@ -78,6 +79,8 @@ function App() {
         <Route path="/admin/employer"element={<AllEmployer/>}/>
         <Route path="/admin/application"element={<Alllapplication/>}/>
         <Route path="/admin/jobseeker" element={<Jobseeker/>}/>
+        <Route path="/admin/category" element={<Category/>}/>
+        
 
         <Route path="*"element={<NotFound />}/>
 

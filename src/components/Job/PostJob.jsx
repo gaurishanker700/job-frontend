@@ -14,8 +14,25 @@ const PostJob = () => {
   const [salaryTo, setSalaryTo] = useState("");
   const [fixedSalary, setFixedSalary] = useState("");
   const [salaryType, setSalaryType] = useState("default");
+  const [cats, setCats] = useState([])
 
   const { isAuthorized, user } = useContext(Context);
+
+  const fetchallcategories =async()=>{
+    try {
+      let res=(await axios.get("http://localhost:4000/api/admin/allcategories",{withCredentials:true})).data;
+      // console.log(res)
+      setCats(res.cats)
+
+      
+    } catch (error) {
+      console.log("category errors",error)
+    }
+  }
+  useEffect(()=>{
+    fetchallcategories()
+  },[])
+  console.log(cats)
 
   const handleJobPost = async (e) => {
     e.preventDefault();
@@ -67,6 +84,7 @@ const PostJob = () => {
       });
   };
 
+
   // const navigateTo = useNavigate();
   // if (!isAuthorized || (user && user.role !== "Employer")) {
   //   navigateTo("/");
@@ -90,8 +108,16 @@ const PostJob = () => {
                 onChange={(e) => setCategory(e.target.value)}
               >
                 <option value="">Select Category</option>
-                <option value="Graphics & Design">Graphics & Design</option>
-                <option value="Mobile App Development">
+                {
+                  cats.map((el)=>{
+                    return(
+                      <option value={el.name}>{el.name}</option>
+                    )
+
+                  })
+                }
+                
+                {/* <option value="Mobile App Development">
                   Mobile App Development
                 </option>
                 <option value="Frontend Web Development">
@@ -111,7 +137,7 @@ const PostJob = () => {
                 <option value="MEVN Stack Development">
                   MEVN STACK Development
                 </option>
-                <option value="Data Entry Operator">Data Entry Operator</option>
+                <option value="Data Entry Operator">Data Entry Operator</option> */}
               </select>
             </div>
             <div className="wrapper">
